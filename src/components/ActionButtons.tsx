@@ -8,83 +8,92 @@ const MAPS_URL =
 
 const actions = [
   {
-    label: "Call",
+    label: "Call Us",
     icon: Phone,
     href: `tel:${PHONE}`,
-    style: {
-      background: "var(--gradient-gold)",
-      color: "hsl(40,60%,97%)",
-    },
-    hoverGlow: "hsl(42 85% 42% / 0.5)",
+    gradient: "linear-gradient(135deg, hsl(42 85% 44%), hsl(38 80% 30%))",
+    glow: "hsl(42 85% 42% / 0.55)",
   },
   {
     label: "WhatsApp",
     icon: MessageCircle,
     href: `https://wa.me/91${PHONE}?text=${WHATSAPP_MSG}`,
-    style: {
-      background: "linear-gradient(135deg, hsl(142 70% 40%), hsl(142 65% 30%))",
-      color: "hsl(40,60%,97%)",
-    },
-    hoverGlow: "hsl(142 70% 40% / 0.5)",
+    gradient: "linear-gradient(135deg, hsl(142 65% 40%), hsl(142 60% 28%))",
+    glow: "hsl(142 65% 40% / 0.5)",
   },
   {
-    label: "Maps",
+    label: "Get Directions",
     icon: MapPin,
     href: MAPS_URL,
-    style: {
-      background: "linear-gradient(135deg, hsl(210 80% 50%), hsl(210 75% 38%))",
-      color: "hsl(40,60%,97%)",
-    },
-    hoverGlow: "hsl(210 80% 50% / 0.5)",
+    gradient: "linear-gradient(135deg, hsl(215 80% 52%), hsl(215 75% 36%))",
+    glow: "hsl(215 80% 52% / 0.5)",
   },
 ];
 
-/* ─── Desktop inline section ─── */
+/* ─── Desktop Section ─── */
 const ActionSection = () => (
   <section
-    className="hidden md:block relative py-20 px-4 overflow-hidden"
-    style={{
-      background: "linear-gradient(180deg, hsl(40 60% 97%) 0%, hsl(38 50% 92%) 100%)",
-    }}
+    className="hidden md:block relative py-28 px-5 overflow-hidden"
+    style={{ background: "linear-gradient(180deg, hsl(40 60% 97%) 0%, hsl(38 48% 91%) 100%)" }}
   >
-    <div className="max-w-xl mx-auto text-center">
+    <div className="max-w-3xl mx-auto text-center">
+
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mb-10"
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        className="mb-16"
       >
-        <div className="divider-gold w-24 mx-auto mb-6" />
-        <h2
-          className="font-serif-display font-semibold text-gold-gradient tracking-widest mb-3"
-          style={{ fontSize: "clamp(1.5rem, 4vw, 2rem)" }}
+        <div className="divider-gold w-28 mx-auto mb-6" />
+        <p
+          className="mb-3"
+          style={{
+            fontFamily: "var(--font-script)",
+            fontSize: "clamp(1.6rem, 4vw, 2.2rem)",
+            color: "hsl(var(--primary))",
+          }}
         >
-          Get in Touch
-        </h2>
-        <p className="font-script text-muted-foreground text-lg">
-          We'd love to hear from you
+          Reach Out to Us
         </p>
+        <h2
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontWeight: 700,
+            fontStyle: "italic",
+            fontSize: "clamp(1.4rem, 4vw, 2.2rem)",
+          }}
+        >
+          <span className="text-gold-gradient">We'd love to hear from you</span>
+        </h2>
+        <div className="divider-gold w-28 mx-auto mt-6" />
       </motion.div>
 
-      <div className="flex items-center justify-center gap-4 flex-wrap">
+      {/* Buttons */}
+      <div className="flex items-center justify-center gap-5 flex-wrap">
         {actions.map((action, i) => (
           <motion.a
             key={action.label}
             href={action.href}
             target={action.href.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.15, duration: 0.6 }}
-            whileHover={{
-              scale: 1.06,
-              boxShadow: `0 8px 30px ${action.hoverGlow}`,
-            }}
+            transition={{ delay: i * 0.15 + 0.2, duration: 0.7, ease: "easeOut" }}
+            whileHover={{ scale: 1.06, boxShadow: `0 10px 36px ${action.glow}` }}
             whileTap={{ scale: 0.96 }}
-            className="flex items-center gap-3 px-8 py-4 rounded-full font-serif-display font-semibold text-sm tracking-widest uppercase transition-all duration-300 shadow-button"
-            style={action.style}
+            className="flex items-center gap-3 px-9 py-4 rounded-full uppercase transition-all duration-300"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontWeight: 600,
+              fontSize: "0.78rem",
+              letterSpacing: "0.18em",
+              background: action.gradient,
+              color: "hsl(40,60%,97%)",
+              boxShadow: `0 4px 20px ${action.glow}`,
+            }}
           >
             <action.icon className="w-5 h-5" />
             {action.label}
@@ -95,37 +104,42 @@ const ActionSection = () => (
   </section>
 );
 
-/* ─── Mobile sticky bottom bar ─── */
+/* ─── Mobile Sticky Bottom Bar ─── */
 const StickyMobileBar = () => (
   <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
     <div
-      className="flex items-stretch shadow-[0_-4px_30px_rgba(0,0,0,0.15)]"
+      className="flex items-stretch"
       style={{
         background: "rgba(250,247,240,0.97)",
-        backdropFilter: "blur(12px)",
-        borderTop: "1px solid hsl(42 85% 42% / 0.2)",
+        backdropFilter: "blur(16px)",
+        borderTop: "1px solid hsl(42 85% 42% / 0.25)",
+        boxShadow: "0 -4px 30px rgba(0,0,0,0.12)",
       }}
     >
-      {actions.map((action, i) => (
+      {actions.map((action) => (
         <motion.a
           key={action.label}
           href={action.href}
           target={action.href.startsWith("http") ? "_blank" : undefined}
           rel="noopener noreferrer"
           whileTap={{ scale: 0.93 }}
-          className="flex-1 flex flex-col items-center justify-center gap-1.5 py-3.5 px-2 font-serif-display text-xs tracking-wider uppercase transition-all duration-200"
-          style={action.style}
+          className="flex-1 flex flex-col items-center justify-center gap-1.5 py-3.5 px-2 transition-all duration-200"
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontWeight: 600,
+            fontSize: "0.65rem",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            background: action.gradient,
+            color: "hsl(40,60%,97%)",
+          }}
         >
           <action.icon className="w-5 h-5" />
           <span>{action.label}</span>
         </motion.a>
       ))}
     </div>
-    {/* Safe area spacer */}
-    <div
-      className="h-safe-bottom"
-      style={{ background: "rgba(250,247,240,0.97)", paddingBottom: "env(safe-area-inset-bottom)" }}
-    />
+    <div style={{ background: "rgba(250,247,240,0.97)", paddingBottom: "env(safe-area-inset-bottom)" }} />
   </div>
 );
 
