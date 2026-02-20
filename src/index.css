@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+/* Fonts loaded via index.html for performance */
 
 /* =============================================
    PREMIUM SOUTH INDIAN ENGAGEMENT INVITATION
@@ -66,9 +66,10 @@
     --shadow-glow: 0 0 30px hsl(48 95% 68% / 0.4);
 
     /* ── Typography ── */
-    --font-serif: 'Cinzel', 'Georgia', serif;
-    --font-script: 'Dancing Script', cursive;
+    --font-serif: 'Playfair Display', 'Georgia', serif;
+    --font-script: 'Great Vibes', cursive;
     --font-elegant: 'Cormorant Garamond', 'Georgia', serif;
+    --font-oldstyle: 'IM Fell English', 'Georgia', serif;
 
     /* Sidebar (unused but required by shadcn) */
     --sidebar-background: 40 60% 97%;
